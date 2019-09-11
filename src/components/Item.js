@@ -1,30 +1,24 @@
 import React, { useState } from "react";
 
-function Item() {
-  const [items, setItems] = useState([
-    {
-      content: "📘 Aprender React"
-    },
-    {
-      content: "⚛️ Crear mi primera aplicación"
-    },
-    {
-      content: "🚀 Subirla a GitHub"
-    }
-  ]);
-  
-  return (
-    <div className="App">
-      <h1>Todo List</h1>
-      <ul className="ItemList">
-        {items.map((item, index) => (
-          <li key={index} className="Item">
-            {item.content}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+
+
+const Item = props =>  {
+  const handleClick = (event) => {
+    const target = event.currentTarget.data;
+    console.log(target)
+    console.log('cierrateeeee')
+  };
+  return(
+  <>
+    <li   
+      className={`ListItem Item${props.isCompleted ? " completed" : ""}`} 
+      onClick={() => props.completeItem(props.index)}
+    >
+      {props.content}
+    </li>
+    <button data={props.index} onClick = {handleClick}>X</button>
+  </>
+  )
 }
 
 export default Item;
